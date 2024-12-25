@@ -1,0 +1,37 @@
+﻿namespace ComicSystem.Views.ComicBooks;
+
+public class Index_cshtml
+{
+    @model IEnumerable<ComicSystem.Models.ComicBook>
+
+    <h2>Comic Books</h2>
+
+    <p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+
+    <table class="table">
+    <thead>
+    <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Price Per Day</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Author</td>
+            <td>@item.PricePerDay</td>
+            <td>
+            <a asp-action="Edit" asp-route-id="@item.ComicBookID">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.ComicBookID">Delete</a>
+            </td>
+            </tr>
+    }
+    </tbody>
+    </table>
+}

@@ -1,0 +1,48 @@
+﻿namespace ComicSystem.Views.Reports;
+
+@model IEnumerable<ComicSystem.ViewModels.RentalReportViewModel>
+
+<h2>Rental Report</h2>
+
+<form method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <label>Start Date:</label>
+            <input type="date" name="startDate" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label>End Date:</label>
+            <input type="date" name="endDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary mt-4">Search</button>
+        </div>
+    </div>
+</form>
+
+<table class="table mt-4">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Book Name</th>
+        <th>Rental Date</th>
+        <th>Return Date</th>
+        <th>Customer Name</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{ int i = 1; }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(i++)</td>
+            <td>@item.BookName</td>
+            <td>@item.RentalDate.ToShortDateString()</td>
+            <td>@item.ReturnDate.ToShortDateString()</td>
+            <td>@item.CustomerName</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
+    </tbody>
+</table>
